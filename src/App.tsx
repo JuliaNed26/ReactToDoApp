@@ -1,12 +1,15 @@
 import './main.css'
+import Header from './components/Header'
+import Themes from './services/Themes'
+import { useState } from 'react';
 
 function App() {
+  const [theme, setTheme] = useState(Themes.Light);
+
   return <body>
     <div className="container">
-        <header>
-            <h1>My Todo List</h1>
-            <button className="theme-toggle" id="theme-toggle">🌙</button>
-        </header>
+        <Header curTheme={theme} setTheme={setTheme}/>
+        <div>{theme}</div>
 
         <div className="input-group">
             <input type="text" id="todo-input" placeholder="Add a new task..."/>
