@@ -1,29 +1,13 @@
-import Themes from "../services/Themes";
+import { useContext } from "react";
+import { ThemeContext } from "../hooks/ThemeProvider";
 
-interface HeaderProps
-{
-    curTheme: string;
-    setTheme: (theme: string) => void;
-}
-
-function Header({ curTheme, setTheme }: HeaderProps) {
-    
-    const changeTheme = () =>
-    {
-        switch(curTheme)
-        {
-            case Themes.Dark:
-                setTheme(Themes.Light);
-                break;
-            case Themes.Light:
-                setTheme(Themes.Dark);
-                break;
-        }
-    }
+function Header() {
+    var themeProvider = useContext(ThemeContext);
 
     return <header>
                 <h1>My Todo List</h1>
-                <button className="theme-toggle" id="theme-toggle" onClick={changeTheme}>🌙</button>
+                <button className="theme-toggle" id="theme-toggle" onClick={themeProvider.toggleTheme}>🌙</button>
+                <h1>{themeProvider.theme}</h1>
             </header>;
 }
 
